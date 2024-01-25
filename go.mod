@@ -1,6 +1,6 @@
 module github.com/packetflinger/q2logfetch
 
-go 1.21.1
+go 1.21
 
 require (
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
