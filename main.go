@@ -16,6 +16,7 @@ var (
 	host      = flag.String("host", "", "The host entry in ssh_config")
 	logFile   = flag.String("logfile", "", "The full path to the remote log")
 	localFile = flag.String("localfile", "", "The local filename to save the log as")
+	user      = flag.String("user", "quake", "The user used to zero files")
 	clear     = flag.Bool("clear", false, "Whether to clear the remote file")
 )
 
@@ -52,7 +53,7 @@ func main() {
 	}
 
 	if *clear {
-		cmd := "sudo echo \"\" > " + *logFile
+		cmd := fmt.Sprintf("sudo su %s -c \"cat /dev/null > %s\"", *user, *logFile)
 		_, err := runCommand(cmd, host)
 		if err != nil {
 			log.Println(err)
