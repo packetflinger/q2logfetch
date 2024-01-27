@@ -117,7 +117,7 @@ func runCommand(cmd string, host SSHConnection) ([]byte, error) {
 //
 // Local files are overwritten each time (not appending)
 func fetchLog(remoteFile string, localFile string, host SSHConnection) error {
-	output, err := runCommand("sudo truncate -s 0 "+remoteFile, host)
+	output, err := runCommand("cat "+remoteFile, host)
 	if err != nil {
 		return err
 	}
